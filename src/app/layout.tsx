@@ -9,10 +9,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-  
+      <body className="flex min-h-screen">
         <Dashboard/>
-        {children}
+       <main className="ml-60 h-screen p-4 flex-1">
+          {children}
+        </main>
       </body>
     </html>
   );
