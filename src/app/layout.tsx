@@ -1,5 +1,5 @@
 import "./globals.css";
-import NavBar from "./NavBar";
+import Dashboard from "./Dashboard";
 
 
 export default function RootLayout({
@@ -10,7 +10,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NavBar/>
+  
+        <Dashboard/>
         {children}
       </body>
     </html>
