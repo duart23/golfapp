@@ -1,5 +1,4 @@
 import "./globals.css";
-import Dashboard from "./Dashboard";
 
 
 export default function RootLayout({
@@ -9,9 +8,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen">
-        <Dashboard/>
-       <main className="ml-60 h-screen p-4 flex-1">
+      <body>
+       <main>
           {children}
         </main>
       </body>
