@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `address` VARCHAR(191) NULL,
+    ADD COLUMN `birthday` DATETIME(3) NULL,
+    ADD COLUMN `country` VARCHAR(191) NULL,
+    ADD COLUMN `gender` VARCHAR(191) NULL,
+    ADD COLUMN `handicap` DOUBLE NULL,
+    ADD COLUMN `phoneNumber` VARCHAR(191) NULL;

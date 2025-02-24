@@ -11,9 +11,15 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  firstName  String?
+  lastName  String?
   password  String?  // Will be null if signing in with Google
   provider  String? // "google" or "credentials"
+  phoneNumber String?
+  dateOfBirth DateTime?
+  gender String?
+  country String?
+  handicap Float?
   games Game[]
 }
 
