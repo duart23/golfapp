@@ -1,9 +1,0 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `birthday` on the `user` table. All the data in the column will be lost.
-
-*/
--- AlterTable
-ALTER TABLE `user` DROP COLUMN `birthday`,
-    ADD COLUMN `dateOfBirth` DATETIME(3) NULL;
