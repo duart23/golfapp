@@ -4,13 +4,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUp() {
+  let finalData = {};
   const router = useRouter();
 
   // Main form state
   const [formData, setFormData] = useState({
+    email: "",
     firstName: "",
     lastName: "",
-    email: "",
     password: "",
     dateOfBirth: "",
     gender: "",
@@ -40,7 +41,9 @@ export default function SignUp() {
     setPhoneDetails({ ...phoneDetails, [e.target.name]: e.target.value });
   };
   // Handle repeat password changes
-  const handleRepeatPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRepeatPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRepeatPassword(e.target.value);
   };
 
@@ -54,9 +57,10 @@ export default function SignUp() {
     }
 
     // Final form data with phone number included
-    const finalData = {
+    finalData = {
       ...formData,
-      phoneNumber: phoneDetails.countryCode + phoneDetails.phone,
+      phoneNumber:"+" + phoneDetails.countryCode + phoneDetails.phone,
+      handicap: formData.handicap ? parseFloat(formData.handicap) : null,
     };
 
     // Send request to backend
@@ -71,21 +75,22 @@ export default function SignUp() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-      });
-  
-      const text = await response.text();  // Log raw response before parsing
+        body: JSON.stringify(finalData),
+      }
+      );
+
+      const text = await response.text();
       console.log("Raw Response:", text);
-  
+
       if (!response.ok) {
         throw new Error(`HTTP Error: ${response.status}`);
       }
-  
-      const data = JSON.parse(text);  // Now safely parse JSON
+
+      const data = JSON.parse(text); // Now safely parse JSON
       console.log("User Created", data);
-      
       router.push("/?login=true");
-    } catch (error) {
+    }
+     catch (error) {
       console.error("Error creating user:", error);
     }
   };

@@ -1,9 +1,17 @@
 'use client';
 import Footer from "./components/footer";
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
+  function handleSignUp() {
+    router.push('/signup');
+  }
+
   const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div>
       <div className="opening-container flex">
@@ -50,7 +58,7 @@ export default function Home() {
                   >
                     Log In
                   </button>
-                  <button className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white">
+                  <button onClick={handleSignUp} className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white">
                     Sign Up
                   </button>
                 </div>
