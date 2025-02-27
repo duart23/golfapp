@@ -1,13 +1,26 @@
-'use client';
+"use client";
 import Footer from "./components/footer";
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fromData = new FormData(e.currentTarget);
+    const response = await signIn('credentials', {
+      email: fromData.get('email'),
+      password: fromData.get('password'),
+      redirect: false,
+    });
+
+    console.log(response);
+  };
+
   const router = useRouter();
 
   function handleSignUp() {
-    router.push('/signup');
+    router.push("/signup");
   }
 
   const [showLogin, setShowLogin] = useState(false);
@@ -25,17 +38,19 @@ export default function Home() {
         <div className="opening-image w-3/5 h-screen bg-blue-500"></div>
         <div className="opening-content w-2/5 h-screen flex items-center justify-center  bg-gray-100">
           <div className="content w-4/5">
-          {showLogin ? (
+            {showLogin ? (
               // Login Form
               <div>
                 <h2 className="p-5 text-3xl text-center">Log In</h2>
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   <input
+                    name="email"
                     type="email"
                     placeholder="Email"
                     className="border p-2 rounded"
                   />
                   <input
+                  name="password"
                     type="password"
                     placeholder="Password"
                     className="border p-2 rounded"
@@ -65,7 +80,10 @@ export default function Home() {
                   >
                     Log In
                   </button>
-                  <button onClick={handleSignUp} className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white">
+                  <button
+                    onClick={handleSignUp}
+                    className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white"
+                  >
                     Sign Up
                   </button>
                 </div>
@@ -112,7 +130,7 @@ export default function Home() {
           <div className="w-3/5 bg-blue-500">aaaaaa</div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
