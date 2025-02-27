@@ -1,6 +1,6 @@
 'use client';
 import Footer from "./components/footer";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -11,6 +11,13 @@ export default function Home() {
   }
 
   const [showLogin, setShowLogin] = useState(false);
+
+  // useEffect(() => {
+  //   const queryParams = new URLSearchParams(window.location.search);
+  //   if (queryParams.get('login') === "true") {
+  //     setShowLogin(true);
+  //   }
+  // }, [window.location.search]);
 
   return (
     <div>

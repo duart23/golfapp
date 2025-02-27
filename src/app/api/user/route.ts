@@ -1,25 +1,39 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "../../../../server/prisma";
+import { UserSchema } from "../../../../zod/user";
+import { z } from "zod";
+import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
+    const body = await req.json();
+    console.log("Received data:", body);
 
-    if (!data || typeof data !== "object") {
+    const parsedData = UserSchema.safeParse(body);
+
+    if (!parsedData.success) {
       return NextResponse.json(
-        { message: "Invalid request body" },
+        { 
+          message: "Validation failed", 
+          errors: parsedData.error.issues.map(issue => ({
+            field: issue.path.join("."),
+            message: issue.message
+          })) 
+        },
         { status: 400 }
       );
     }
 
-    console.log("Received data:", data);
+    const data = parsedData.data;
 
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    
     const user = await prisma.user.create({
       data: {
         firstName: data.firstName ?? null,
         lastName: data.lastName ?? null,
         email: data.email,
-        password: data.password,
+        password: hashedPassword,
         provider: data.provider ?? null,
         dateOfBirth: data.dateOfBirth ?? null,
         gender: data.gender ?? null,

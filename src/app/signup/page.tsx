@@ -55,11 +55,10 @@ export default function SignUp() {
       alert("Passwords do not match!");
       return;
     }
-
     // Final form data with phone number included
     finalData = {
       ...formData,
-      phoneNumber:"+" + phoneDetails.countryCode + phoneDetails.phone,
+      phoneNumber: "+" + phoneDetails.countryCode + phoneDetails.phone,
       handicap: formData.handicap ? parseFloat(formData.handicap) : null,
       dateOfBirth: formData.dateOfBirth ? new Date(formData.dateOfBirth) : null,
     };
@@ -77,8 +76,7 @@ export default function SignUp() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(finalData),
-      }
-      );
+      });
 
       const text = await response.text();
       console.log("Raw Response:", text);
@@ -90,8 +88,7 @@ export default function SignUp() {
       const data = JSON.parse(text); // Now safely parse JSON
       console.log("User Created", data);
       router.push("/?login=true");
-    }
-     catch (error) {
+    } catch (error) {
       console.error("Error creating user:", error);
     }
   };
