@@ -61,6 +61,7 @@ export default function SignUp() {
       ...formData,
       phoneNumber:"+" + phoneDetails.countryCode + phoneDetails.phone,
       handicap: formData.handicap ? parseFloat(formData.handicap) : null,
+      dateOfBirth: formData.dateOfBirth ? new Date(formData.dateOfBirth) : null,
     };
 
     // Send request to backend

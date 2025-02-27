@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
         lastName: data.lastName ?? null,
         email: data.email,
         password: data.password,
+        provider: data.provider ?? null,
         dateOfBirth: data.dateOfBirth ?? null,
         gender: data.gender ?? null,
         country: data.country ?? null,
