@@ -16,6 +16,10 @@ export async function getUserData()
         select: {
           id: true,
           firstName: true,
+          lastName: true,
+          email: true,
+          gender: true,
+          country: true,
           handicap: true,
         },
       });
