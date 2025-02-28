@@ -14,6 +14,8 @@ export default function Home() {
       redirect: false,
     });
 
+    router.push('/loggedin');
+
     console.log(response);
   };
 

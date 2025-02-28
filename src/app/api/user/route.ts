@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "../../../../server/prisma";
 import { UserSchema } from "../../../../zod/user";
-import { z } from "zod";
 import bcrypt from "bcrypt";
+import { getUserData } from "../../../../server/getUserData"
 
 export async function POST(req: NextRequest) {
   try {
@@ -49,5 +49,15 @@ export async function POST(req: NextRequest) {
       { message: "Internal Server Error" },
       { status: 500 }
     );
+  }
+}
+
+
+export async function GET() {
+  try {
+    const user = await getUserData();
+    return NextResponse.json(user);
+  } catch (error) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 }

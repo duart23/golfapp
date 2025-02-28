@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Logout from "./logouts";
 
-export default async function RootLayout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
