@@ -5,21 +5,25 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
+  const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fromData = new FormData(e.currentTarget);
-    const response = await signIn('credentials', {
-      email: fromData.get('email'),
-      password: fromData.get('password'),
+    const response = await signIn("credentials", {
+      email: fromData.get("email"),
+      password: fromData.get("password"),
       redirect: false,
     });
 
-    router.push('/loggedin');
+    if (response?.error) {
+      console.error("Login failed:", response.error);
+      return; // Stop execution if login fails
+    }
+
+    router.push("/loggedin");
 
     console.log(response);
   };
-
-  const router = useRouter();
 
   function handleSignUp() {
     router.push("/signup");
@@ -52,7 +56,7 @@ export default function Home() {
                     className="border p-2 rounded"
                   />
                   <input
-                  name="password"
+                    name="password"
                     type="password"
                     placeholder="Password"
                     className="border p-2 rounded"

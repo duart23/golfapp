@@ -27,12 +27,12 @@ model Game {
   id           String  @id @default(uuid())  
   userId       Int     // Foreign key
   user         User    @relation(fields: [userId], references: [id])  // Relationship
-  courseName   String
-  location     String
-  numberOfHoles Int
-  parTotal     Int
-  holePars     Json
-  courseRating Float
-  score        Int
-  createdAt    DateTime @default(now())
+  courseName   String?
+  location     String?
+  numberOfHoles Int?
+  parTotal     Int?
+  holePars     Json?
+  courseRating Float?
+  score        Int?
+  date       DateTime?
 }
