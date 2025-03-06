@@ -22,8 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate Prisma Client
-        run: npx prisma generate
-
       - name: Deploy to Vercel
         run: npx vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
