@@ -4,7 +4,7 @@ interface User {
   handicap: number;
 }
 
-export default function PreviousGames({ user }: { user: User }) {
+export default function PreviousGames({ }: { user: User }) {
   return (
     <div className="container bg-gray-200 w-4/12 mx-auto text-center">
       <div className="flex flex-col gap-5 p-5">

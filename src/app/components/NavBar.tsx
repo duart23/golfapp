@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Logout from "./logout";
+import Image from "next/image";
 
 export const NavBar = () => {
   const router = useRouter();
@@ -10,9 +11,8 @@ export const NavBar = () => {
     <nav className="navbar flex items-center justify-between h-16 px-8">
       <div
         className="flex items-center gap-2 w-1/3"
-        onClick={() => router.push("/loggedin")}
-      >
-        <img className="h-8 w-auto" alt="logo" />
+        onClick={() => router.push("/loggedin")}>
+        <Image src="/path/to/logo.png" className="h-8 w-auto" alt="logo" width={32} height={32} />
         <h1 className="text-lg font-bold">GOLF APP</h1>
       </div>
 

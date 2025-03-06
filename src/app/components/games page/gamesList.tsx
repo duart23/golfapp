@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import GameComponent from "./game";
 import { useFetchGame } from "../../../hooks/useGame";
 import { useSelector } from "react-redux";

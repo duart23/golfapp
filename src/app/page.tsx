@@ -1,6 +1,6 @@
 "use client";
 import Footer from "./components/footer";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
