@@ -56,7 +56,7 @@ export async function GET() {
   try {
     const user = await getUserData();
     return NextResponse.json(user);
-  } catch (error: unknown) {
+  } catch{
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 }
