@@ -30,14 +30,6 @@ export default function Home() {
   }
 
   const [showLogin, setShowLogin] = useState(false);
-
-  // useEffect(() => {
-  //   const queryParams = new URLSearchParams(window.location.search);
-  //   if (queryParams.get('login') === "true") {
-  //     setShowLogin(true);
-  //   }
-  // }, [window.location.search]);
-
   return (
     <div>
       <div className="opening-container flex">

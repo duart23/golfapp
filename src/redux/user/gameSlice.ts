@@ -25,7 +25,10 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     setGames: (state, action: PayloadAction<Game[]>) => {
-      state.games = action.payload;
+      state.games = action.payload.map((game) => ({
+        ...game,
+        holePars: Object.values(game.holePars) as number[],
+      }));
     },
     addGame: (state, action: PayloadAction<Game>) => {
       state.games.push(action.payload);

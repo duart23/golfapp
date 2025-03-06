@@ -1,7 +1,9 @@
+
 import { getServerSession } from "next-auth";
 import { NavBar } from "../components/NavBar";
 import ReduxProvider from "../../redux/ReduxProvider";
 import Footer from "../components/footer";
+import { SessionProvider } from "next-auth/react";
 
 export default async function RootLayout({
   children,
