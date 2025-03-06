@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "../../../../server/prisma";
 import { UserSchema } from "../../../../zod/user";
 import bcrypt from "bcrypt";
-import { getUserData } from "../../../../server/getUserData"
+import { getUserData } from "../../../../server/getUserData";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,12 +13,12 @@ export async function POST(req: NextRequest) {
 
     if (!parsedData.success) {
       return NextResponse.json(
-        { 
-          message: "Validation failed", 
-          errors: parsedData.error.issues.map(issue => ({
+        {
+          message: "Validation failed",
+          errors: parsedData.error.issues.map((issue) => ({
             field: issue.path.join("."),
-            message: issue.message
-          })) 
+            message: issue.message,
+          })),
         },
         { status: 400 }
       );
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     const data = parsedData.data;
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    
+
     const user = await prisma.user.create({
       data: {
         firstName: data.firstName ?? null,
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       },
     });
     return NextResponse.json(user, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error creating user: ", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
@@ -52,12 +52,11 @@ export async function POST(req: NextRequest) {
   }
 }
 
-
 export async function GET() {
   try {
     const user = await getUserData();
     return NextResponse.json(user);
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 }

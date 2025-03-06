@@ -70,7 +70,7 @@ export default function Home() {
             ) : (
               // Default Welcome Screen
               <div>
-                <h1 className="p-5 text-3xl text-center">Welcome to "Name"!</h1>
+                <h1 className="p-5 text-3xl text-center">Welcome to &quot;Name&quot;!</h1>
                 <div className="opening-buttons flex justify-center gap-12">
                   <button
                     className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white"

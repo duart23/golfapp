@@ -1,4 +1,3 @@
-import { getServerSession } from "next-auth";
 import { NavBar } from "../components/NavBar";
 import ReduxProvider from "../../redux/ReduxProvider";
 import Footer from "../components/footer";

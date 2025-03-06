@@ -21,5 +21,5 @@ export function useFetchGame(userId: number) {
         };
       
         fetchGameData();
-      }, [userId]);
+      }, [userId, dispatch]);
 }
