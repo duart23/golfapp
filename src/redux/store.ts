@@ -3,7 +3,6 @@ import userReducer from "./user/userSlice";
 import gameReducer from "./user/gameSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import thunk from "redux-thunk";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
