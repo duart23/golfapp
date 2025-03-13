@@ -13,6 +13,7 @@ export default function Home() {
       email: fromData.get("email"),
       password: fromData.get("password"),
       redirect: false,
+      callbackUrl: "/loggedin",
     });
 
     if (response?.error) {
