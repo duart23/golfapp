@@ -5,13 +5,15 @@ export default withAuth({
     signIn: "/",
   },
   callbacks: {
-    authorized: ({ token }) => {
-      console.log("Middleware Token:", token); // Debug session
-      return !!token; // Only allow if session exists
+    authorized: ({ req, token }) => {
+      if (req.nextUrl.pathname === "/dashboard" && !token) {
+        return false; // Redirect to login if no session
+      }
+      return true; // Allow access if logged in
     },
   },
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*"], // Protect dashboard
+  matcher: ["/dashboard/:path*"], // Protect all /dashboard routes
 };
