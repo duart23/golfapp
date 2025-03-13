@@ -49,7 +49,7 @@ export const authOptions: NextAuthOptions = {
       callbacks: {
         async redirect({ url, baseUrl }) {
           console.log("Redirecting to:", url);
-          return url.startsWith(baseUrl) ? url : baseUrl + "/loggedin";
+          return url.startsWith(baseUrl) ? url : baseUrl + "/dashboard";
         },
       },
       secret: process.env.NEXTAUTH_SECRET,

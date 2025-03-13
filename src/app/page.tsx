@@ -13,7 +13,7 @@ export default function Home() {
       email: fromData.get("email"),
       password: fromData.get("password"),
       redirect: false,
-      callbackUrl: "/loggedin",
+      callbackUrl: "/dashboard",
     });
 
     if (response?.error) {
@@ -21,7 +21,7 @@ export default function Home() {
       return; // Stop execution if login fails
     }
 
-    router.push("/loggedin");
+    router.push("/dashboard",);
 
     console.log(response);
   };

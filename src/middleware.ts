@@ -6,7 +6,7 @@ export default withAuth({
   },
   callbacks: {
     authorized: ({ req, token }) => {
-      if (req.nextUrl.pathname === "/loggedin" && !token) {
+      if (req.nextUrl.pathname === "/dashboard" && !token) {
         return false; // Redirect to login if no session
       }
       return true; // Allow access if logged in
@@ -15,5 +15,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ["/loggedin/:path*"], // Protect all /loggedin routes
+  matcher: ["/dashboard/:path*"], // Protect all /dashboard routes
 };

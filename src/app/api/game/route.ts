@@ -13,8 +13,6 @@ export async function GET(req: NextRequest) {
 
     const games = await getGameData(Number(userId));
 
-    // console.log("Fetched games:", games); // ✅ Debug log
-
     return NextResponse.json(games);
   } catch (error) {
     console.error("Error fetching games:", error);
