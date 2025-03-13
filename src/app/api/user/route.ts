@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "../../../../server/prisma";
 import { UserSchema } from "../../../../zod/user";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { getUserData } from "../../../../server/getUserData";
 
 export async function POST(req: NextRequest) {
