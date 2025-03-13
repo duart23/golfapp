@@ -13,7 +13,6 @@ export default function Home() {
       email: fromData.get("email"),
       password: fromData.get("password"),
       redirect: false,
-      callbackUrl: "/dashboard",
     });
 
     if (response?.error) {
@@ -21,7 +20,8 @@ export default function Home() {
       return; // Stop execution if login fails
     }
 
-    router.push("/dashboard",);
+    router.refresh();
+    router.push("/dashboard");
 
     console.log(response);
   };
@@ -71,7 +71,9 @@ export default function Home() {
             ) : (
               // Default Welcome Screen
               <div>
-                <h1 className="p-5 text-3xl text-center">Welcome to &quot;Name&quot;!</h1>
+                <h1 className="p-5 text-3xl text-center">
+                  Welcome to &quot;Name&quot;!
+                </h1>
                 <div className="opening-buttons flex justify-center gap-12">
                   <button
                     className="btn bg-blue-500 w-24 rounded-lg p-2 px-4 text-white"
