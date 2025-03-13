@@ -1,6 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import compare from "bcrypt";
+import bcrypt from "bcryptjs";
 import { prisma } from "../server/prisma";
 
 export const authOptions: NextAuthOptions = {
@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
               return null;
             }
     
-            const passwordMatch = await compare.compare(
+            const passwordMatch = await bcrypt.compare(
               credentials.password || "",
               user.password || ""
             );
@@ -47,9 +47,21 @@ export const authOptions: NextAuthOptions = {
         }),
       ],
       callbacks: {
+        async session({ session, token }) {
+          if (token) {
+            session.user = {email: token.email };
+          }
+          return session;
+        },
+        async jwt({ token, user }) {
+          if (user) {
+            token.email = user.email;
+          }
+          return token;
+        },
         async redirect({ url, baseUrl }) {
           console.log("Redirecting to:", url);
-          return url.startsWith(baseUrl) ? url : baseUrl + "/dashboard";
+          return url.startsWith(baseUrl) ? url : `${baseUrl}/dashboard`;
         },
       },
       secret: process.env.NEXTAUTH_SECRET,
