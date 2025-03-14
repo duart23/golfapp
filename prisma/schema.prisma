@@ -29,9 +29,9 @@ model Game {
   user         User    @relation(fields: [userId], references: [id])  // Relationship
   courseName   String?
   location     String?
-  numberOfHoles Int?
   parTotal     Int?
   holePars     Json?
+  holeScores   Json?
   courseRating Float?
   score        Int?
   date       DateTime?
