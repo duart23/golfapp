@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getGameData } from "../../../../server/getGameData";
-import prisma from "../../../../server/prisma";
-import { number } from "zod";
-import HolePars from "@/app/components/games page/holePars";
+import {prisma} from "../../../../server/prisma";
 
 export async function GET(req: NextRequest) {
   try {

@@ -2,11 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Game {
   id: string;
+  userId: number;
   courseName: string;
   location: string;
-  numberOfHoles: number;
   parTotal: number;
   holePars: number[];
+  holeScores: number[];
   rating: number;
   score: number;
   date: string;
@@ -28,6 +29,7 @@ const gameSlice = createSlice({
       state.games = action.payload.map((game) => ({
         ...game,
         holePars: Object.values(game.holePars) as number[],
+        holeScores: Object.values(game.holeScores) as number[],
       }));
     },
     addGame: (state, action: PayloadAction<Game>) => {

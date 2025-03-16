@@ -1,6 +1,17 @@
+"use client";
+import { AddGame } from "@/app/components/games page/addGame";
 import GamesList from "@/app/components/games page/gamesList";
+import { useState } from "react";
 
 export default function Games() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClose = () => {setIsModalOpen(false)};
+  const handleOpen = () => {setIsModalOpen(true)};
+
+
+
   return (
     <div>
       <h1 className="text-center text-3xl p-4 text-blue-400">Games</h1>
@@ -20,12 +31,15 @@ export default function Games() {
           <option value="scoreUp">Score - High to Low</option>
           <option value="scoreDown">Score - Low to High</option>
         </select>
-        <button className="btn bg-blue-500 rounded-lg p-2 px-4 text-white">
+        <button className="btn bg-blue-500 rounded-lg p-2 px-4 text-white"
+        onClick={handleOpen}>
           Add Game
         </button>
       </div>
       <div>
         <GamesList />
+
+      {isModalOpen && <AddGame onClose={handleClose} />}
       </div>
     </div>
   );

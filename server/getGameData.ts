@@ -10,11 +10,11 @@ export async function getGameData(userId: number) {
       id: true,
       courseName: true,
       location: true,
-      numberOfHoles: true,
       parTotal: true,
       courseRating: true,
       score: true,
       holePars: true,
+      holeScores: true,
       date: true,
     },
   });
